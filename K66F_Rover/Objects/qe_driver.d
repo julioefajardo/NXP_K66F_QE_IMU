@@ -4,7 +4,7 @@
 .\objects\qe_driver.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include\core_cm4.h
 .\objects\qe_driver.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include\cmsis_compiler.h
 .\objects\qe_driver.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include\cmsis_armcc.h
-.\objects\qe_driver.o: D:\TuringLab\K66F_Rover\RTE\Device\MK66FN2M0xxx18\system_MK66F18.h
+.\objects\qe_driver.o: D:\TuringLab\NXP_K66F_QE_IMU\K66F_Rover\RTE\Device\MK66FN2M0xxx18\system_MK66F18.h
 .\objects\qe_driver.o: QE_Driver.h
 .\objects\qe_driver.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\qe_driver.o: C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include\arm_math.h

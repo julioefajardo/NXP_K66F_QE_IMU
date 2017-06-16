@@ -1201,12 +1201,12 @@ ARM Macro Assembler    Page 19
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\objects\startup_mk66f18.d -o.\objects\startup_mk66f18.o -ID:\
-TuringLab\K66F_Rover\RTE -ID:\TuringLab\K66F_Rover\RTE\Device\MK66FN2M0xxx18 -I
-C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\Ki
-netis_K60_DFP\1.4.0\Device\Include --predefine="__EVAL SETA 1" --predefine="__U
-VISION_VERSION SETA 520" --predefine="_RTE_ SETA 1" --predefine="MK66FN2M0xxx18
- SETA 1" --list=.\listings\startup_mk66f18.lst RTE\Device\MK66FN2M0xxx18\startu
-p_MK66F18.s
+TuringLab\NXP_K66F_QE_IMU\K66F_Rover\RTE -ID:\TuringLab\NXP_K66F_QE_IMU\K66F_Ro
+ver\RTE\Device\MK66FN2M0xxx18 -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Inclu
+de -IC:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.4.0\Device\Include --predefine=
+"__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 520" --predefine="_RTE_ SET
+A 1" --predefine="MK66FN2M0xxx18 SETA 1" --list=.\listings\startup_mk66f18.lst 
+RTE\Device\MK66FN2M0xxx18\startup_MK66F18.s
 
 
 
