@@ -9,15 +9,8 @@
 ADCC trigger enabled and sources on SIM->SOPT7 
 */
 
-uint16_t ticks1 = 0;
-uint16_t ticks2 = 0;
 int64_t steps = 0;
-uint8_t flag1 = 0;
-uint8_t flag2 = 0;
-volatile uint8_t TOF;
-volatile uint8_t TOFDIR;
-volatile uint8_t QUADIR;
-
+float32_t omega = 0.0f;
 QuadratureEncoder QEI_L;
 QuadratureEncoder QEI_R;
 
@@ -27,10 +20,14 @@ int main(void){
 	LEDs_Init();
 	QEI_Init(&QEI_L,1);
 	QEI_Init(&QEI_R,2);
-	PIT_Init(10);
+	PIT_Init(FREQUENCY);
+	
+	QEI_Process(&QEI_L,1);
+	QEI_Process(&QEI_R,2);
 	
 	while(1){
 		steps = QEI_L.steps;
+		omega = QEI_L.omega;
 	}
 }
 

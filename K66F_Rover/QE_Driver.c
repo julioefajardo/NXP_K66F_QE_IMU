@@ -38,15 +38,18 @@ void QEI_Init(QuadratureEncoder * QEI, uint8_t timer){
 }
 
 void QEI_Process(QuadratureEncoder * QEI, uint8_t timer){
+	volatile int64_t delta;
 	QEI->ticks2 = FTM_addr[timer]->CNT;
 	if((FTM_addr[timer]->SC & FTM_SC_TOF_MASK)){
 		FTM_addr[timer]->SC &= ~(FTM_SC_TOF_MASK);
 		if(!(FTM_addr[timer]->QDCTRL & FTM_QDCTRL_TOFDIR_MASK)&&!(FTM_addr[timer]->QDCTRL & FTM_QDCTRL_QUADIR_MASK)) 
-			QEI->steps += QEI->ticks2 - QEI->ticks1 - 0x10000;
+			delta = QEI->ticks2 - QEI->ticks1 - 0x10000;
 		if((FTM_addr[timer]->QDCTRL & FTM_QDCTRL_TOFDIR_MASK)&&(FTM_addr[timer]->QDCTRL & FTM_QDCTRL_QUADIR_MASK)) 
-			QEI->steps += QEI->ticks2 - QEI->ticks1 + 0x10000;
+			delta = QEI->ticks2 - QEI->ticks1 + 0x10000;
 	} else {
-		QEI->steps += QEI->ticks2 - QEI->ticks1;
+		delta = QEI->ticks2 - QEI->ticks1;
 	}
+	QEI->steps += delta;
+	QEI->omega = delta/((float32_t)(1.0f/FREQUENCY));
 	QEI->ticks1 = QEI->ticks2;
 }

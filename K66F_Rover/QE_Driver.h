@@ -16,6 +16,8 @@
 #include <stdlib.h>
 #include "arm_math.h"                   // ARM::CMSIS:DSP
 
+#define FREQUENCY	100
+
 typedef struct Quadrature{
 	uint16_t ticks1;
 	uint16_t ticks2;

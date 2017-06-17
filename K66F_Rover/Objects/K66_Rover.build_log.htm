@@ -29,17 +29,17 @@ Project File Date:  06/15/2017
 Build target 'FRDM-K66F'
 compiling QE_Driver.c...
 linking...
-Program Size: Code=2188 RO-data=1068 RW-data=52 ZI-data=1172  
+Program Size: Code=2336 RO-data=1068 RW-data=40 ZI-data=1168  
 ".\Objects\K66_Rover.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
                 http://www.keil.com/pack/ARM.CMSIS.5.0.0.pack
-                ARM::CMSIS:CORE:5.0.0
+                ARM::CMSIS:DSP:1.4.6
                 CMSIS (Cortex Microcontroller Software Interface Standard)
-   * Component: CORE Version: 5.0.0
    * Component: DSP Version: 1.4.6
+   * Component: CORE Version: 5.0.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.Kinetis_K60_DFP.1.4.0.pack
@@ -55,16 +55,16 @@ Package Vendor: Keil
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:5.0.0
-
    * Component: ARM::CMSIS:DSP:1.4.6
-      Include file:  CMSIS\Include\arm_math.h
       Library file:  CMSIS\Lib\ARM\arm_cortexM4lf_math.lib
+      Include file:  CMSIS\Include\arm_math.h
+
+   * Component: ARM::CMSIS:CORE:5.0.0
 
    * Component: Keil::Device:Startup:3.0.0
       Source file:   Device\Source\ARM\startup_MK66F18.s
-      Source file:   Device\Source\system_MK66F18.c
       Include file:  Device\Source\system_MK66F18.h
+      Source file:   Device\Source\system_MK66F18.c
 Build Time Elapsed:  00:00:05
 </pre>
 </body>
