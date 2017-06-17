@@ -50,6 +50,6 @@ void QEI_Process(QuadratureEncoder * QEI, uint8_t timer){
 		delta = QEI->ticks2 - QEI->ticks1;
 	}
 	QEI->steps += delta;
-	QEI->omega = delta/((float32_t)(1.0f/FREQUENCY));
+	QEI->omega = ((delta*PI)/84.0f)/((float32_t)(1.0f/FREQUENCY));												//168 steps per revolute
 	QEI->ticks1 = QEI->ticks2;
 }
