@@ -23,9 +23,9 @@ typedef struct Quadrature{
 	uint16_t ticks2;
 	int64_t steps;
 	float32_t omega;
-	} QuadratureEncoder;
+	} QuadratureDecoder;
 
-void QE_Init(QuadratureEncoder * QE, uint8_t n);
-void QE_Process(QuadratureEncoder * QE, uint8_t timer);
+void QD_Init(QuadratureDecoder * QD, uint8_t n);
+void QD_Process(QuadratureDecoder * QD, uint8_t timer);
 
 #endif /* QE_DRIVER_H_ */

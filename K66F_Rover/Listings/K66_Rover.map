@@ -5,22 +5,22 @@ Component: ARM Compiler 5.06 update 2 (build 183) Tool: armlink [4d35b7]
 Section Cross References
 
     main.o(i.PIT0_IRQHandler) refers to leds.o(i.LED_Toggle) for LED_Toggle
-    main.o(i.PIT0_IRQHandler) refers to qe_driver.o(i.QE_Process) for QE_Process
+    main.o(i.PIT0_IRQHandler) refers to qe_driver.o(i.QD_Process) for QD_Process
     main.o(i.PIT0_IRQHandler) refers to motor_driver.o(i.Power_Verification) for Power_Verification
     main.o(i.PIT0_IRQHandler) refers to motor_driver.o(i.Motor_Set) for Motor_Set
-    main.o(i.PIT0_IRQHandler) refers to main.o(.bss) for QE_L
+    main.o(i.PIT0_IRQHandler) refers to main.o(.bss) for QD_L
     main.o(i.PIT0_IRQHandler) refers to main.o(.data) for Left_error
     main.o(i.main) refers to leds.o(i.LEDs_Init) for LEDs_Init
-    main.o(i.main) refers to qe_driver.o(i.QE_Init) for QE_Init
+    main.o(i.main) refers to qe_driver.o(i.QD_Init) for QD_Init
     main.o(i.main) refers to motor_driver.o(i.Motor_Init) for Motor_Init
     main.o(i.main) refers to pit.o(i.PIT_Init) for PIT_Init
-    main.o(i.main) refers to qe_driver.o(i.QE_Process) for QE_Process
+    main.o(i.main) refers to qe_driver.o(i.QD_Process) for QD_Process
     main.o(i.main) refers to arm_pid_init_f32.o(.text) for arm_pid_init_f32
     main.o(i.main) refers to main.o(.bss) for Left_PID
     main.o(i.main) refers to main.o(.data) for steps
-    qe_driver.o(i.QE_Init) refers to qe_driver.o(.data) for QE_addr
-    qe_driver.o(i.QE_Process) refers to ffltll_clz.o(x$fpl$ffltll) for __aeabi_l2f
-    qe_driver.o(i.QE_Process) refers to qe_driver.o(.data) for QE_addr
+    qe_driver.o(i.QD_Init) refers to qe_driver.o(.data) for QD_addr
+    qe_driver.o(i.QD_Process) refers to ffltll_clz.o(x$fpl$ffltll) for __aeabi_l2f
+    qe_driver.o(i.QD_Process) refers to qe_driver.o(.data) for QD_addr
     leds.o(i.LED_Off) refers to leds.o(.data) for leds_addr
     leds.o(i.LED_Off) refers to leds.o(.constdata) for leds_mask
     leds.o(i.LED_On) refers to leds.o(.data) for leds_addr
@@ -394,23 +394,23 @@ Image Symbol Table
     i.PIT0_IRQHandler                        0x00000958   Section        0  main.o(i.PIT0_IRQHandler)
     i.PIT_Init                               0x00000a8c   Section        0  pit.o(i.PIT_Init)
     i.Power_Verification                     0x00000aec   Section        0  motor_driver.o(i.Power_Verification)
-    i.QE_Init                                0x00000b38   Section        0  qe_driver.o(i.QE_Init)
-    i.QE_Process                             0x00000c08   Section        0  qe_driver.o(i.QE_Process)
+    i.QD_Init                                0x00000b38   Section        0  qe_driver.o(i.QD_Init)
+    i.QD_Process                             0x00000c08   Section        0  qe_driver.o(i.QD_Process)
     i.SystemInit                             0x00000cf8   Section        0  system_mk66f18.o(i.SystemInit)
     i.main                                   0x00000ec4   Section        0  main.o(i.main)
-    x$fpl$exception                          0x00000f7c   Section      492  except.o(x$fpl$exception)
-    $v0                                      0x00000f7c   Number         0  except.o(x$fpl$exception)
-    x$fpl$ffltll                             0x00001168   Section      158  ffltll_clz.o(x$fpl$ffltll)
-    $v0                                      0x00001168   Number         0  ffltll_clz.o(x$fpl$ffltll)
-    x$fpl$fpinit                             0x00001206   Section       10  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x00001206   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$retnan                             0x00001210   Section      178  retnan.o(x$fpl$retnan)
-    $v0                                      0x00001210   Number         0  retnan.o(x$fpl$retnan)
-    x$fpl$trapveneer                         0x000012c2   Section      126  trapv.o(x$fpl$trapveneer)
-    $v0                                      0x000012c2   Number         0  trapv.o(x$fpl$trapveneer)
-    .constdata                               0x00001340   Section       12  leds.o(.constdata)
-    x$fpl$usenofp                            0x00001340   Section        0  usenofp.o(x$fpl$usenofp)
-    .constdata                               0x0000134c   Section       20  motor_driver.o(.constdata)
+    x$fpl$exception                          0x00000f80   Section      492  except.o(x$fpl$exception)
+    $v0                                      0x00000f80   Number         0  except.o(x$fpl$exception)
+    x$fpl$ffltll                             0x0000116c   Section      158  ffltll_clz.o(x$fpl$ffltll)
+    $v0                                      0x0000116c   Number         0  ffltll_clz.o(x$fpl$ffltll)
+    x$fpl$fpinit                             0x0000120a   Section       10  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x0000120a   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$retnan                             0x00001214   Section      178  retnan.o(x$fpl$retnan)
+    $v0                                      0x00001214   Number         0  retnan.o(x$fpl$retnan)
+    x$fpl$trapveneer                         0x000012c6   Section      126  trapv.o(x$fpl$trapveneer)
+    $v0                                      0x000012c6   Number         0  trapv.o(x$fpl$trapveneer)
+    .constdata                               0x00001344   Section       12  leds.o(.constdata)
+    x$fpl$usenofp                            0x00001344   Section        0  usenofp.o(x$fpl$usenofp)
+    .constdata                               0x00001350   Section       20  motor_driver.o(.constdata)
     .data                                    0x20000000   Section       36  main.o(.data)
     .data                                    0x20000024   Section       12  qe_driver.o(.data)
     .data                                    0x20000030   Section       12  leds.o(.data)
@@ -647,27 +647,27 @@ Image Symbol Table
     PIT0_IRQHandler                          0x00000959   Thumb Code   270  main.o(i.PIT0_IRQHandler)
     PIT_Init                                 0x00000a8d   Thumb Code    78  pit.o(i.PIT_Init)
     Power_Verification                       0x00000aed   Thumb Code    74  motor_driver.o(i.Power_Verification)
-    QE_Init                                  0x00000b39   Thumb Code   186  qe_driver.o(i.QE_Init)
-    QE_Process                               0x00000c09   Thumb Code   224  qe_driver.o(i.QE_Process)
+    QD_Init                                  0x00000b39   Thumb Code   186  qe_driver.o(i.QD_Init)
+    QD_Process                               0x00000c09   Thumb Code   224  qe_driver.o(i.QD_Process)
     SystemInit                               0x00000cf9   Thumb Code   406  system_mk66f18.o(i.SystemInit)
     main                                     0x00000ec5   Thumb Code   150  main.o(i.main)
-    __fpl_exception                          0x00000f7d   Thumb Code   454  except.o(x$fpl$exception)
-    __aeabi_ul2f                             0x00001169   Thumb Code     0  ffltll_clz.o(x$fpl$ffltll)
-    _ll_uto_f                                0x00001169   Thumb Code     6  ffltll_clz.o(x$fpl$ffltll)
-    __aeabi_l2f                              0x0000116f   Thumb Code     0  ffltll_clz.o(x$fpl$ffltll)
-    _ll_sto_f                                0x0000116f   Thumb Code   152  ffltll_clz.o(x$fpl$ffltll)
-    _fp_init                                 0x00001207   Thumb Code    10  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x0000120f   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x0000120f   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fpl_return_NaN                         0x00001211   Thumb Code   178  retnan.o(x$fpl$retnan)
-    _fp_trapveneer                           0x000012c3   Thumb Code    36  trapv.o(x$fpl$trapveneer)
-    __fpl_cmpreturn                          0x000012e7   Thumb Code    90  trapv.o(x$fpl$trapveneer)
-    __I$use$fp                               0x00001340   Number         0  usenofp.o(x$fpl$usenofp)
-    leds_mask                                0x00001340   Data          12  leds.o(.constdata)
-    channel                                  0x0000134c   Data           4  motor_driver.o(.constdata)
-    dir_mask                                 0x00001350   Data          16  motor_driver.o(.constdata)
-    Region$$Table$$Base                      0x00001360   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00001380   Number         0  anon$$obj.o(Region$$Table)
+    __fpl_exception                          0x00000f81   Thumb Code   454  except.o(x$fpl$exception)
+    __aeabi_ul2f                             0x0000116d   Thumb Code     0  ffltll_clz.o(x$fpl$ffltll)
+    _ll_uto_f                                0x0000116d   Thumb Code     6  ffltll_clz.o(x$fpl$ffltll)
+    __aeabi_l2f                              0x00001173   Thumb Code     0  ffltll_clz.o(x$fpl$ffltll)
+    _ll_sto_f                                0x00001173   Thumb Code   152  ffltll_clz.o(x$fpl$ffltll)
+    _fp_init                                 0x0000120b   Thumb Code    10  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x00001213   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x00001213   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fpl_return_NaN                         0x00001215   Thumb Code   178  retnan.o(x$fpl$retnan)
+    _fp_trapveneer                           0x000012c7   Thumb Code    36  trapv.o(x$fpl$trapveneer)
+    __fpl_cmpreturn                          0x000012eb   Thumb Code    90  trapv.o(x$fpl$trapveneer)
+    __I$use$fp                               0x00001344   Number         0  usenofp.o(x$fpl$usenofp)
+    leds_mask                                0x00001344   Data          12  leds.o(.constdata)
+    channel                                  0x00001350   Data           4  motor_driver.o(.constdata)
+    dir_mask                                 0x00001354   Data          16  motor_driver.o(.constdata)
+    Region$$Table$$Base                      0x00001364   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00001384   Number         0  anon$$obj.o(Region$$Table)
     Left_error                               0x20000000   Data           4  main.o(.data)
     Right_error                              0x20000004   Data           4  main.o(.data)
     L_Motor                                  0x20000008   Data           4  main.o(.data)
@@ -676,13 +676,13 @@ Image Symbol Table
     pwm2                                     0x20000014   Data           4  main.o(.data)
     steps                                    0x20000018   Data           8  main.o(.data)
     omega                                    0x20000020   Data           4  main.o(.data)
-    QE_addr                                  0x20000024   Data          12  qe_driver.o(.data)
+    QD_addr                                  0x20000024   Data          12  qe_driver.o(.data)
     leds_addr                                0x20000030   Data          12  leds.o(.data)
     MOTOR_addr                               0x2000003c   Data          16  motor_driver.o(.data)
     dir_addr                                 0x2000004c   Data          16  motor_driver.o(.data)
     SystemCoreClock                          0x2000005c   Data           4  system_mk66f18.o(.data)
-    QE_L                                     0x20000060   Data          24  main.o(.bss)
-    QE_R                                     0x20000078   Data          24  main.o(.bss)
+    QD_L                                     0x20000060   Data          24  main.o(.bss)
+    QD_R                                     0x20000078   Data          24  main.o(.bss)
     Left_PID                                 0x20000090   Data          36  main.o(.bss)
     Right_PID                                0x200000b4   Data          36  main.o(.bss)
     __libspace_start                         0x200000d8   Data          96  libspace.o(.bss)
@@ -696,9 +696,9 @@ Memory Map of the image
 
   Image Entry point : 0x000004b1
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x000013e0, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x000013e4, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Base: 0x00000000, Size: 0x00001380, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x00001384, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -776,19 +776,19 @@ Memory Map of the image
     0x00000a8c   0x00000060   Code   RO          177    i.PIT_Init          pit.o
     0x00000aec   0x0000004a   Code   RO          357    i.Power_Verification  motor_driver.o
     0x00000b36   0x00000002   PAD
-    0x00000b38   0x000000d0   Code   RO           86    i.QE_Init           qe_driver.o
-    0x00000c08   0x000000f0   Code   RO           87    i.QE_Process        qe_driver.o
+    0x00000b38   0x000000d0   Code   RO           86    i.QD_Init           qe_driver.o
+    0x00000c08   0x000000f0   Code   RO           87    i.QD_Process        qe_driver.o
     0x00000cf8   0x000001cc   Code   RO          406    i.SystemInit        system_mk66f18.o
-    0x00000ec4   0x000000b8   Code   RO            5    i.main              main.o
-    0x00000f7c   0x000001ec   Code   RO          493    x$fpl$exception     g_wm.l(except.o)
-    0x00001168   0x0000009e   Code   RO          490    x$fpl$ffltll        g_wm.l(ffltll_clz.o)
-    0x00001206   0x0000000a   Code   RO          596    x$fpl$fpinit        g_wm.l(fpinit.o)
-    0x00001210   0x000000b2   Code   RO          511    x$fpl$retnan        g_wm.l(retnan.o)
-    0x000012c2   0x0000007e   Code   RO          513    x$fpl$trapveneer    g_wm.l(trapv.o)
-    0x00001340   0x00000000   Code   RO          495    x$fpl$usenofp       g_wm.l(usenofp.o)
-    0x00001340   0x0000000c   Data   RO          135    .constdata          leds.o
-    0x0000134c   0x00000014   Data   RO          358    .constdata          motor_driver.o
-    0x00001360   0x00000020   Data   RO          658    Region$$Table       anon$$obj.o
+    0x00000ec4   0x000000bc   Code   RO            5    i.main              main.o
+    0x00000f80   0x000001ec   Code   RO          493    x$fpl$exception     g_wm.l(except.o)
+    0x0000116c   0x0000009e   Code   RO          490    x$fpl$ffltll        g_wm.l(ffltll_clz.o)
+    0x0000120a   0x0000000a   Code   RO          596    x$fpl$fpinit        g_wm.l(fpinit.o)
+    0x00001214   0x000000b2   Code   RO          511    x$fpl$retnan        g_wm.l(retnan.o)
+    0x000012c6   0x0000007e   Code   RO          513    x$fpl$trapveneer    g_wm.l(trapv.o)
+    0x00001344   0x00000000   Code   RO          495    x$fpl$usenofp       g_wm.l(usenofp.o)
+    0x00001344   0x0000000c   Data   RO          135    .constdata          leds.o
+    0x00001350   0x00000014   Data   RO          358    .constdata          motor_driver.o
+    0x00001364   0x00000020   Data   RO          658    Region$$Table       anon$$obj.o
 
 
     Execution Region ER_RW (Base: 0x20000000, Size: 0x00000060, Max: 0xffffffff, ABSOLUTE)
@@ -820,7 +820,7 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        184         30         12         12          0       1487   leds.o
-       492         72          0         36        120     959173   main.o
+       496         76          0         36        120     959173   main.o
        530         48         20         32          0       2409   motor_driver.o
         96         18          0          0          0      28550   pit.o
        448         38          0         12          0      15601   qe_driver.o
@@ -828,7 +828,7 @@ Image component sizes
        460         54          0          4          0        943   system_mk66f18.o
 
     ----------------------------------------------------------------------
-      2292        298       1088         96       1144    1009231   Object Totals
+      2296        302       1088         96       1144    1009231   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          0          0          0          0   (incl. Padding)
 
@@ -892,15 +892,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      3904        464       1088         96       1240    1026622   Grand Totals
-      3904        464       1088         96       1240    1026622   ELF Image Totals
-      3904        464       1088         96          0          0   ROM Totals
+      3908        468       1088         96       1240    1026622   Grand Totals
+      3908        468       1088         96       1240    1026622   ELF Image Totals
+      3908        468       1088         96          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 4992 (   4.88kB)
+    Total RO  Size (Code + RO Data)                 4996 (   4.88kB)
     Total RW  Size (RW Data + ZI Data)              1336 (   1.30kB)
-    Total ROM Size (Code + RO Data + RW Data)       5088 (   4.97kB)
+    Total ROM Size (Code + RO Data + RW Data)       5092 (   4.97kB)
 
 ==============================================================================
 
