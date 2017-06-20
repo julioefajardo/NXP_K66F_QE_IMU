@@ -12,5 +12,6 @@
 .\objects\main.o: LEDs.h
 .\objects\main.o: QE_Driver.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\main.o: Motor_Driver.h
 .\objects\main.o: PIT.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.4.0\Device\Include\MK66F18.h

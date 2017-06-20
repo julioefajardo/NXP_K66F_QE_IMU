@@ -93,6 +93,7 @@ extern "C" {
 
 #include <stdint.h>
 
+#define CLOCK_SETUP										 1	
 
 #ifndef DISABLE_WDOG
   #define DISABLE_WDOG                 1
@@ -143,8 +144,6 @@ extern "C" {
 */
 
 /* Define clock source values */
-
-#define CLOCK_SETUP										 1	
 
 #define CPU_XTAL_CLK_HZ                16000000U           /* Value of the external crystal or oscillator clock frequency of the system oscillator (OSC) in Hz */
 #define CPU_XTAL32k_CLK_HZ             32768U              /* Value of the external 32k crystal or oscillator clock frequency of the RTC in Hz */

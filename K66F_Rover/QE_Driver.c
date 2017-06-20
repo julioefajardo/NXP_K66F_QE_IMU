@@ -12,9 +12,9 @@
 #include "MK66F18.h"                    // Device header
 #include "QE_Driver.h"
 
-FTM_Type *FTM_addr[]    = {FTM0, FTM1, FTM2};
+FTM_Type *QE_addr[]    = {FTM0, FTM1, FTM2};
 
-void QEI_Init(QuadratureEncoder * QEI, uint8_t timer){
+void QE_Init(QuadratureEncoder * QE, uint8_t timer){
 	switch(timer){
 		case 1:{
 			SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK;
@@ -29,27 +29,27 @@ void QEI_Init(QuadratureEncoder * QEI, uint8_t timer){
 			PORTB->PCR[19] |= PORT_PCR_MUX(0x06);
 		} break;
 	}
-	FTM_addr[timer]->MODE |= FTM_MODE_WPDIS_MASK;
-	FTM_addr[timer]->QDCTRL |= FTM_QDCTRL_PHAFLTREN_MASK + FTM_QDCTRL_PHBFLTREN_MASK + FTM_QDCTRL_QUADEN_MASK;	
-	FTM_addr[timer]->MOD = 0xFFFF;
-	FTM_addr[timer]->SC = FTM_SC_CLKS(0x01) + FTM_SC_PS(0x05);
-	QEI->ticks1 = FTM1_CNT;
-	QEI->steps = QEI->ticks1;
+	QE_addr[timer]->MODE |= FTM_MODE_WPDIS_MASK;
+	QE_addr[timer]->QDCTRL |= FTM_QDCTRL_PHAFLTREN_MASK + FTM_QDCTRL_PHBFLTREN_MASK + FTM_QDCTRL_QUADEN_MASK;	
+	QE_addr[timer]->MOD = 0xFFFF;
+	QE_addr[timer]->SC = FTM_SC_CLKS(0x01) + FTM_SC_PS(0x02);
+	QE->ticks1 = FTM1_CNT;
+	QE->steps = QE->ticks1;
 }
 
-void QEI_Process(QuadratureEncoder * QEI, uint8_t timer){
+void QE_Process(QuadratureEncoder * QE, uint8_t timer){
 	volatile int64_t delta;
-	QEI->ticks2 = FTM_addr[timer]->CNT;
-	if((FTM_addr[timer]->SC & FTM_SC_TOF_MASK)){
-		FTM_addr[timer]->SC &= ~(FTM_SC_TOF_MASK);
-		if(!(FTM_addr[timer]->QDCTRL & FTM_QDCTRL_TOFDIR_MASK)&&!(FTM_addr[timer]->QDCTRL & FTM_QDCTRL_QUADIR_MASK)) 
-			delta = QEI->ticks2 - QEI->ticks1 - 0x10000;
-		if((FTM_addr[timer]->QDCTRL & FTM_QDCTRL_TOFDIR_MASK)&&(FTM_addr[timer]->QDCTRL & FTM_QDCTRL_QUADIR_MASK)) 
-			delta = QEI->ticks2 - QEI->ticks1 + 0x10000;
+	QE->ticks2 = QE_addr[timer]->CNT;
+	if((QE_addr[timer]->SC & FTM_SC_TOF_MASK)){
+		QE_addr[timer]->SC &= ~(FTM_SC_TOF_MASK);
+		if(!(QE_addr[timer]->QDCTRL & FTM_QDCTRL_TOFDIR_MASK)&&!(QE_addr[timer]->QDCTRL & FTM_QDCTRL_QUADIR_MASK)) 
+			delta = QE->ticks2 - QE->ticks1 - 0x10000;
+		if((QE_addr[timer]->QDCTRL & FTM_QDCTRL_TOFDIR_MASK)&&(QE_addr[timer]->QDCTRL & FTM_QDCTRL_QUADIR_MASK)) 
+			delta = QE->ticks2 - QE->ticks1 + 0x10000;
 	} else {
-		delta = QEI->ticks2 - QEI->ticks1;
+		delta = QE->ticks2 - QE->ticks1;
 	}
-	QEI->steps += delta;
-	QEI->omega = ((delta*PI)/84.0f)/((float32_t)(1.0f/FREQUENCY));												//168 steps per revolute
-	QEI->ticks1 = QEI->ticks2;
+	QE->steps += delta;
+	QE->omega = ((delta*PI)/562.0f)/((float32_t)(1.0f/PIT_FREQUENCY));												//168 steps per revolute
+	QE->ticks1 = QE->ticks2;
 }

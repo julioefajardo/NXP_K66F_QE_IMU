@@ -402,6 +402,21 @@
               <FileType>1</FileType>
               <FilePath>.\PIT.c</FilePath>
             </File>
+            <File>
+              <FileName>I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>FXOS8700.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\FXOS8700.c</FilePath>
+            </File>
+            <File>
+              <FileName>Motor_Driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Motor_Driver.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

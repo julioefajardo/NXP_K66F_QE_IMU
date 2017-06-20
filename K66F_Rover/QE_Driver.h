@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "arm_math.h"                   // ARM::CMSIS:DSP
 
-#define FREQUENCY	100
+#define PIT_FREQUENCY	100
 
 typedef struct Quadrature{
 	uint16_t ticks1;
@@ -25,11 +25,7 @@ typedef struct Quadrature{
 	float32_t omega;
 	} QuadratureEncoder;
 
-void QEI_Init(QuadratureEncoder * QEI_L, uint8_t n);
-void QEL_Init(QuadratureEncoder * QEI_L);
-void QER_Init(QuadratureEncoder * QEI_R);
-void QEI_Process(QuadratureEncoder * QEI, uint8_t timer);
-void QEL_Process(QuadratureEncoder * QEI_L);
-void QER_Process(QuadratureEncoder * QEI_R);
+void QE_Init(QuadratureEncoder * QE, uint8_t n);
+void QE_Process(QuadratureEncoder * QE, uint8_t timer);
 
 #endif /* QE_DRIVER_H_ */
