@@ -92,7 +92,7 @@ void PIT0_IRQHandler(void){
 	Left_error = QD_L.omega - Left_SP;
 	Right_error = QD_R.omega - Left_SP;
 	L_Motor = arm_pid_f32(&Left_PID, Left_error);
-  R_Motor = arm_pid_f32(&Right_PID, Right_error);
+	R_Motor = arm_pid_f32(&Right_PID, Right_error);
 	L_Motor = Power_Verification(&L_Motor);
 	R_Motor = Power_Verification(&R_Motor);
 	Motor_Set(&L_Motor,1);
