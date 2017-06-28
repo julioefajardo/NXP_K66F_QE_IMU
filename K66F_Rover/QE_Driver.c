@@ -50,6 +50,6 @@ void QD_Process(QuadratureDecoder * QD, uint8_t timer){
 		delta = QD->ticks2 - QD->ticks1;
 	}
 	QD->steps += delta;
-	QD->omega = ((delta*PI)/562.0f)/((float32_t)(1.0f/PIT_FREQUENCY));												//168 steps per revolute
+	QD->omega = ((delta*PI)/562.0f)/((float32_t)(1.0f/PIT_FREQUENCY));												
 	QD->ticks1 = QD->ticks2;
 }

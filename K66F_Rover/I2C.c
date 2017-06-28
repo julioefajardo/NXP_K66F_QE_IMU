@@ -15,17 +15,19 @@
 void I2C_Init(I2C_MemMapPtr p){
 	if (p == I2C0){																		// IMU (FXOS8700 + FXAS21002)
 		SIM->SCGC4 |= SIM_SCGC4_I2C0_MASK;
-		SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK + SIM_SCGC5_PORTC_MASK + SIM_SCGC5_PORTD_MASK;
-		PORTD->PCR[8] |= PORT_PCR_MUX(2);
-		PORTD->PCR[9] |= PORT_PCR_MUX(2);
-		PORTA->PCR[29]|= PORT_PCR_ISF_MASK + PORT_PCR_MUX(0x01) + PORT_PCR_IRQC(0x0A);	//FXAS21002 INT1
-		PORTC->PCR[17]|= PORT_PCR_ISF_MASK + PORT_PCR_MUX(0x01) + PORT_PCR_IRQC(0x0A);	//FXOS8700 INT1
+		//SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK + SIM_SCGC5_PORTC_MASK + SIM_SCGC5_PORTD_MASK;
+		//PORTD->PCR[8] |= PORT_PCR_MUX(2);
+		//PORTD->PCR[9] |= PORT_PCR_MUX(2);
+		//PORTA->PCR[29]|= PORT_PCR_ISF_MASK + PORT_PCR_MUX(0x01) + PORT_PCR_IRQC(0x0A);	//FXAS21002 INT1
+		//PORTC->PCR[17]|= PORT_PCR_ISF_MASK + PORT_PCR_MUX(0x01) + PORT_PCR_IRQC(0x0A);	//FXOS8700 INT1
+		
 		//SIM->SCGC5 |= SIM_SCGC5_PORTE_MASK;
 		//PORTE->PCR[24] |= PORT_PCR_MUX(5);
 		//PORTE->PCR[25] |= PORT_PCR_MUX(5);
-		//SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;
-		//PORTB->PCR[2] |= PORT_PCR_MUX(2);
-		//PORTB->PCR[3] |= PORT_PCR_MUX(2);
+		
+		SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;
+		PORTB->PCR[2] |= PORT_PCR_MUX(2);
+		PORTB->PCR[3] |= PORT_PCR_MUX(2);
 	}
   if (p == I2C1){																		// Audio CODEC (DA7212)
 		SIM->SCGC5 |= SIM_SCGC5_PORTC_MASK;
@@ -33,7 +35,7 @@ void I2C_Init(I2C_MemMapPtr p){
 		PORTC->PCR[10] |= PORT_PCR_MUX(2);
 		PORTC->PCR[11] |= PORT_PCR_MUX(2);
 	}
-  p->F = I2C_F_ICR(0x4e);														// Baudrate 400k 0x17 ok->0x4e 0x88 100k ok->0x2a 
+  p->F = I2C_F_ICR(0x2a);														// Baudrate 400k 0x17 100k ok->0x2a 
 	p->C1 = I2C_C1_IICEN_MASK;												// I2C enable
 }
 
@@ -104,18 +106,19 @@ void I2C_WriteReg(I2C_MemMapPtr p, uint8_t dev_addr, uint8_t addr, uint8_t data)
 	I2C_Wait(p);
 	
 	p->D = addr;
+	I2C_SendACK(p);
 	I2C_Wait(p);
 	
 	p->D = data;
+	I2C_SendACK(p);
 	I2C_Wait(p);
 	
 	I2C_Stop(p);
 	Pause(350);
 }
 
-uint8_t I2C_ReadReg(I2C_MemMapPtr p, uint8_t dev_addr, uint8_t addr, uint8_t data){
+uint8_t I2C_ReadReg(I2C_MemMapPtr p, uint8_t dev_addr, uint8_t addr){
 	uint8_t result;
-	
 	I2C_Start(p);
 	p->D = (dev_addr)|I2C_WRITE;
 	I2C_Wait(p);
@@ -139,7 +142,7 @@ uint8_t I2C_ReadReg(I2C_MemMapPtr p, uint8_t dev_addr, uint8_t addr, uint8_t dat
 	return result;
 }
 
-void I2C_ReadMultipleRegs(I2C_MemMapPtr p, uint8_t dev_addr, uint8_t addr, uint8_t n, uint8_t * result){
+void I2C_ReadMultipleRegs(I2C_MemMapPtr p, uint8_t dev_addr, uint8_t addr, uint8_t n, uint8_t *result){
 	uint8_t i;
 	
 	I2C_Start(p);

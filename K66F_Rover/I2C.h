@@ -32,6 +32,6 @@ void I2C_Wait(I2C_MemMapPtr p);
 uint8_t I2C_GetACK(I2C_MemMapPtr p);
 void Pause(uint16_t n);
 void I2C_WriteReg(I2C_MemMapPtr p, uint8_t dev_addr, uint8_t addr, uint8_t data);
-uint8_t I2C_ReadReg(I2C_MemMapPtr p, uint8_t dev_addr, uint8_t addr, uint8_t data);
+uint8_t I2C_ReadReg(I2C_MemMapPtr p, uint8_t dev_addr, uint8_t addr);
 void I2C_ReadMultipleRegs(I2C_MemMapPtr p, uint8_t dev_addr, uint8_t addr, uint8_t n, uint8_t * res);
 #endif /* I2C_H_ */

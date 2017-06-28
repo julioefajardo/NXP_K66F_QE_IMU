@@ -1,10 +1,18 @@
 #define ARM_MATH_CM4
+#if !defined  (__FPU_PRESENT) 
+  #define __FPU_PRESENT             1       
+#endif 
+
+#include <stdio.h>
+#include "arm_math.h"                   // ARM::CMSIS:DSP
 #include "MK66F18.h"                    // Device header
-#include "arm_math.h"                   // ARM::CMSIS:
 #include "LEDs.h"
 #include "QE_Driver.h"
 #include "Motor_Driver.h"
 #include "PIT.h"
+#include "FXOS8700.h"
+#include "I2C.h"
+#include "UART.h"
 
 /*
 ADCC trigger enabled and sources on SIM->SOPT7 
@@ -37,7 +45,11 @@ QuadratureDecoder QD_R;
 
 arm_pid_instance_f32 Left_PID;
 arm_pid_instance_f32 Right_PID;
-	
+
+uint8_t error= 0;
+
+// debug
+char string[8];
 
 int main(void){
 	
@@ -56,6 +68,7 @@ int main(void){
 	QD_Init(&QD_R,2);
 	Motor_Init(1);
 	Motor_Init(2);
+	UART_Init(115200);
 	PIT_Init(PIT_FREQUENCY);
 	
 	QD_Process(&QD_L,1);
@@ -63,9 +76,7 @@ int main(void){
 	
 	arm_pid_init_f32(&Left_PID,1);
 	arm_pid_init_f32(&Right_PID,1);
-	
-	//Motor_Set(&pwm1,1);
-	//Motor_Set(&pwm2,2);
+	UART_PutString("NXP ROVER\n");
 	
 	while(1){
 		steps = QD_L.steps;
@@ -86,4 +97,14 @@ void PIT0_IRQHandler(void){
 	R_Motor = Power_Verification(&R_Motor);
 	Motor_Set(&L_Motor,1);
 	Motor_Set(&R_Motor,2);
+	sprintf(string,"%.2f,%.2f\n\r",L_Motor,R_Motor);
+	UART_PutString(string);
 }
+
+void UART0_RX_TX_IRQHandler(void){
+	volatile uint8_t data ;
+	(void)UART0->S1;
+	data = UART0->D;
+	UART_Send(data);
+}
+
