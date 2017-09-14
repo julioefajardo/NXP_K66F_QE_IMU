@@ -10,12 +10,13 @@
       <TargetName>FRDM-K66F</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
+      <pArmCC>5060183::V5.06 update 2 (build 183)::ARMCC</pArmCC>
       <pCCUsed>5060183::V5.06 update 2 (build 183)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>MK66FN2M0xxx18</Device>
           <Vendor>NXP</Vendor>
-          <PackID>Keil.Kinetis_K60_DFP.1.4.0</PackID>
+          <PackID>Keil.Kinetis_K60_DFP.1.5.0</PackID>
           <PackURL>http://www.keil.com/pack/</PackURL>
           <Cpu>IRAM(0x20000000,0x30000) IRAM2(0x1FFF0000,0x10000) IROM(0x00000000,0x200000) CPUTYPE("Cortex-M4") FPU2 CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -334,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define></Define>
               <Undefine></Undefine>
-              <IncludePath>..\K66F_Rover</IncludePath>
+              <IncludePath>..\K66F_Rover;.\ros_lib</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -460,7 +461,7 @@
       <file attr="config" category="source" condition="Compiler ARMCC" name="Device\Source\ARM\startup_MK66F18.s" version="3.0.0">
         <instance index="0">RTE\Device\MK66FN2M0xxx18\startup_MK66F18.s</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="3.0.0" condition="MK66F18 CMSIS"/>
-        <package name="Kinetis_K60_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.4.0"/>
+        <package name="Kinetis_K60_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.5.0"/>
         <targetInfos>
           <targetInfo name="FRDM-K66F"/>
         </targetInfos>
@@ -468,7 +469,7 @@
       <file attr="config" category="source" name="Device\Source\system_MK66F18.c" version="3.0.0">
         <instance index="0">RTE\Device\MK66FN2M0xxx18\system_MK66F18.c</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="3.0.0" condition="MK66F18 CMSIS"/>
-        <package name="Kinetis_K60_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.4.0"/>
+        <package name="Kinetis_K60_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.5.0"/>
         <targetInfos>
           <targetInfo name="FRDM-K66F"/>
         </targetInfos>
@@ -476,7 +477,7 @@
       <file attr="config" category="header" name="Device\Source\system_MK66F18.h" version="3.0.0">
         <instance index="0">RTE\Device\MK66FN2M0xxx18\system_MK66F18.h</instance>
         <component Cclass="Device" Cgroup="Startup" Cvendor="Keil" Cversion="3.0.0" condition="MK66F18 CMSIS"/>
-        <package name="Kinetis_K60_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.4.0"/>
+        <package name="Kinetis_K60_DFP" schemaVersion="1.2" url="http://www.keil.com/pack/" vendor="Keil" version="1.5.0"/>
         <targetInfos>
           <targetInfo name="FRDM-K66F"/>
         </targetInfos>

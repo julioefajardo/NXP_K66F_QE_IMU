@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "arm_math.h"                   // ARM::CMSIS:DSP
 
-#define PIT_FREQUENCY	100
+#define PIT_FREQUENCY	200
 
 typedef struct Quadrature{
 	uint16_t ticks1;

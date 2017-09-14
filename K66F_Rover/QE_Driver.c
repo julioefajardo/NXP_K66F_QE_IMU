@@ -32,7 +32,7 @@ void QD_Init(QuadratureDecoder * QD, uint8_t timer){
 	QD_addr[timer]->MODE |= FTM_MODE_WPDIS_MASK;
 	QD_addr[timer]->QDCTRL |= FTM_QDCTRL_PHAFLTREN_MASK + FTM_QDCTRL_PHBFLTREN_MASK + FTM_QDCTRL_QUADEN_MASK;	
 	QD_addr[timer]->MOD = 0xFFFF;
-	QD_addr[timer]->SC = FTM_SC_CLKS(0x01) + FTM_SC_PS(0x02);
+	QD_addr[timer]->SC = FTM_SC_CLKS(0x01) + FTM_SC_PS(0x00);
 	QD->ticks1 = FTM1_CNT;
 	QD->steps = QD->ticks1;
 }
@@ -50,6 +50,6 @@ void QD_Process(QuadratureDecoder * QD, uint8_t timer){
 		delta = QD->ticks2 - QD->ticks1;
 	}
 	QD->steps += delta;
-	QD->omega = ((delta*PI)/562.0f)/((float32_t)(1.0f/PIT_FREQUENCY));												
+	QD->omega = ((delta*PI)/2700.0f)/((float32_t)(1.0f/PIT_FREQUENCY));												
 	QD->ticks1 = QD->ticks2;
 }

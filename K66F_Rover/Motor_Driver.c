@@ -52,11 +52,11 @@ void Motor_Init(uint8_t motor){
 void Motor_Set(float32_t * duty_cycle, uint8_t motor){
 	uint16_t value;
 	if((*duty_cycle)<0) {
-		dir_addr[motor]->PSOR |= dir_mask[motor];
+		dir_addr[motor]->PCOR |= dir_mask[motor];
 		value = (uint16_t) (((SystemCoreClock/4)/MOTOR_FREQ)*(*duty_cycle*(-1.0f)));
 	}
 	else {
-		dir_addr[motor]->PCOR |= dir_mask[motor];
+		dir_addr[motor]->PSOR |= dir_mask[motor];
 		value = (uint16_t) (((SystemCoreClock/4)/MOTOR_FREQ)*(*duty_cycle));
 	}
 	MOTOR_addr[motor]->CONTROLS[channel[motor]].CnV  = FTM_CnV_VAL(value);
@@ -65,10 +65,12 @@ void Motor_Set(float32_t * duty_cycle, uint8_t motor){
 float32_t Power_Verification(float32_t * pid){
 	if(*pid>=0.0f){
 		if(*pid>1.0f) return 1.0f;
+		else if(*pid<0.05f) return 0.0f;
 		else return *pid;
 	}
 	else{
 		if(*pid<-1.0f) return -1.0f;
+		else if(*pid>-0.05f) return 0.0f;
 		else return *pid;
 	}
 }

@@ -92,17 +92,17 @@
         <Book>
           <Number>2</Number>
           <Title>Quick Start Guide (TWR-K60D100M)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.4.0\Documents\TWR-K60D100MQSG.pdf</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.5.0\Boards\NXP\TWR-K60D100M\Documents\TWR-K60D100MQSG.pdf</Path>
         </Book>
         <Book>
           <Number>3</Number>
           <Title>Schematic (TWR-K60D100M)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.4.0\Documents\TWR-K60D100M_SCH.pdf</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.5.0\Boards\NXP\TWR-K60D100M\Documents\TWR-K60D100M_SCH.pdf</Path>
         </Book>
         <Book>
           <Number>4</Number>
           <Title>User Manual (TWR-K60D100M)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.4.0\Documents\TWRK60D100MUM.pdf</Path>
+          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.5.0\Boards\NXP\TWR-K60D100M\Documents\TWRK60D100MUM.pdf</Path>
         </Book>
         <Book>
           <Number>5</Number>
@@ -112,7 +112,7 @@
         <Book>
           <Number>6</Number>
           <Title>TWR-K60D100M Web Page (TWR-K60D100M)</Title>
-          <Path>http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=TWR-K60D100M</Path>
+          <Path>http://www.nxp.com/products/microcontrollers-and-processors/arm-processors/kinetis-cortex-m-mcus/k-series-performance-m4/k6x-ethernet/kinetis-k60-100-mhz-mcu-tower-system-module:TWR-K60D100M</Path>
         </Book>
       </Books>
       <DebugOpt>
@@ -197,34 +197,34 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>steps,0x0A</ItemText>
+          <ItemText>QD_L,0x0A</ItemText>
         </Ww>
         <Ww>
           <count>2</count>
           <WinNumber>1</WinNumber>
-          <ItemText>omega</ItemText>
-        </Ww>
-        <Ww>
-          <count>3</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>Left_error</ItemText>
-        </Ww>
-        <Ww>
-          <count>4</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>L_Motor</ItemText>
-        </Ww>
-        <Ww>
-          <count>5</count>
-          <WinNumber>1</WinNumber>
-          <ItemText>error,0x10</ItemText>
+          <ItemText>QD_R,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <WatchWindow2>
         <Ww>
           <count>0</count>
           <WinNumber>2</WinNumber>
-          <ItemText>string</ItemText>
+          <ItemText>omega_a,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>1</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>omega_b,0x0A</ItemText>
+        </Ww>
+        <Ww>
+          <count>2</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>Left_SP</ItemText>
+        </Ww>
+        <Ww>
+          <count>3</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>Right_SP</ItemText>
         </Ww>
       </WatchWindow2>
       <Tracepoint>
@@ -387,7 +387,7 @@
 
   <Group>
     <GroupName>::Device</GroupName>
-    <tvExp>0</tvExp>
+    <tvExp>1</tvExp>
     <tvExpOptDlg>0</tvExpOptDlg>
     <cbSel>0</cbSel>
     <RteFlg>1</RteFlg>

@@ -18,41 +18,50 @@
 ADCC trigger enabled and sources on SIM->SOPT7 
 */
 
-#define PID_L_KP       	0.275f               /* Proporcional */  		//0.175
-#define PID_L_KI       	0.001f               /* Integral     */
-#define PID_L_KD       	0.0f                 /* Derivative   */
+#define PID_L_KP       	0.275f     		          	
+#define PID_L_KI       	0.025f      	         	
+#define PID_L_KD       	0.15f                 		
 
-#define PID_R_KP       	0.275f               /* Proporcional */ 
-#define PID_R_KI       	0.001f               /* Integral     */
-#define PID_R_KD       	0.0f                 /* Derivative   */
+#define PID_R_KP       	0.275f               			
+#define PID_R_KI       	0.025f               		
+#define PID_R_KD       	0.15f                 		
 
-#define Left_SP	     		5.0f
-#define Right_SP   			5.0f
+//#define Left_SP	     		-3.5f
+//#define Right_SP   			-3.5f
+
+float32_t Left_SP = 0.0f;
+float32_t Right_SP = 0.0f;
 
 float32_t Left_error = 0.0f;
 float32_t Right_error = 0.0f;
 
 float32_t L_Motor = 0.0f;
 float32_t R_Motor = 0.0f;
-float32_t pwm1 = 0.25f;
-float32_t pwm2 = -0.25f;
-
-int64_t steps = 0;
-float32_t omega = 0.0f;
 
 QuadratureDecoder QD_L;
 QuadratureDecoder QD_R;
 
+QuadratureDecoder * QuadPtr;
+
 arm_pid_instance_f32 Left_PID;
 arm_pid_instance_f32 Right_PID;
 
-uint8_t error= 0;
+uint8_t num = 0;
+uint8_t i = 0;
 
 // debug
-char string[8];
+char string[24];
+
+// parse
+char num1[8];
+char num2[8];
+uint8_t data_ready;
+int16_t omega_a = 0;
+int16_t omega_b = 0;
+
 
 int main(void){
-	
+		
 	//Left Motor
 	Left_PID.Kp = PID_L_KP;        /* Proporcional */
 	Left_PID.Ki = PID_L_KI;        /* Integral */
@@ -70,41 +79,82 @@ int main(void){
 	Motor_Init(2);
 	UART_Init(115200);
 	PIT_Init(PIT_FREQUENCY);
+	SysTick_Config(SystemCoreClock/20);
 	
 	QD_Process(&QD_L,1);
 	QD_Process(&QD_R,2);
 	
 	arm_pid_init_f32(&Left_PID,1);
 	arm_pid_init_f32(&Right_PID,1);
-	UART_PutString("NXP ROVER\n");
 	
 	while(1){
-		steps = QD_L.steps;
-		omega = QD_L.omega;
+		if(data_ready){
+			omega_a = atoi(num1);
+			omega_b = atoi(num2);
+			//Left_SP = omega_a/(1000.0f);							// without PID
+			//Right_SP = omega_b/(1000.0f);						// without PID
+			Left_SP = omega_a/(100.0f);
+			Right_SP = omega_b/(100.0f);
+			if (omega_a > 123) LED_On(0);
+			else LED_Off(0);
+			if (omega_b > 123) LED_On(2);
+			else LED_Off(2);
+			data_ready = 0;
+		} 
 	}
+}
+
+void SysTick_Handler(void){
+	LED_Toggle(1);
+	sprintf(string,"%.2f,\t%.2f,\t%.2f,\t%.2f\r",Left_SP,QD_L.omega,Right_SP,QD_R.omega);
+	//UART_PutString(string);
 }
 
 void PIT0_IRQHandler(void){
 	PIT->CHANNEL[0].TFLG |= PIT_TFLG_TIF_MASK;
-	LED_Toggle(1);
+	//LED_Toggle(1);
 	QD_Process(&QD_L,1);
 	QD_Process(&QD_R,2);
-	Left_error = QD_L.omega - Left_SP;
-	Right_error = QD_R.omega - Left_SP;
-	L_Motor = arm_pid_f32(&Left_PID, Left_error);
-	R_Motor = arm_pid_f32(&Right_PID, Right_error);
+	Left_error = Left_SP - QD_L.omega;
+	Right_error = Right_SP - QD_R.omega;
+	L_Motor = ((Left_SP>=-0.01f)&&(Left_SP<=0.01f))?0.0f:arm_pid_f32(&Left_PID, Left_error);
+	R_Motor = ((Right_SP>=-0.01f)&&(Right_SP<=0.01f))?0.0f:arm_pid_f32(&Right_PID, Right_error);
 	L_Motor = Power_Verification(&L_Motor);
 	R_Motor = Power_Verification(&R_Motor);
 	Motor_Set(&L_Motor,1);
 	Motor_Set(&R_Motor,2);
-	sprintf(string,"%.2f,%.2f\n\r",L_Motor,R_Motor);
-	UART_PutString(string);
 }
 
 void UART0_RX_TX_IRQHandler(void){
 	volatile uint8_t data ;
 	(void)UART0->S1;
 	data = UART0->D;
-	UART_Send(data);
+	switch(num){
+		case 0:{
+			data_ready = 0;
+			if(data != ','){
+				num1[i] = data;
+				i++;
+			} else{
+				num1[i] = '\0';
+				num = 1;
+				i = 0;
+			}
+		} break;
+		case 1:{
+			data_ready = 0;
+			if(data != '*'){
+				num2[i] = data;
+				i++;
+			} else{
+				num2[i] = '\0';
+				num = 2;
+				i = 0;
+			}
+		} break;
+		case 2:{
+			data_ready = 1;
+			num = 0;
+		} break;
+	}
 }
-
