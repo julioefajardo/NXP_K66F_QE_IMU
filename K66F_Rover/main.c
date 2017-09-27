@@ -20,11 +20,11 @@ ADCC trigger enabled and sources on SIM->SOPT7
 
 #define PID_L_KP       	0.275f     		          	
 #define PID_L_KI       	0.025f      	         	
-#define PID_L_KD       	0.15f                 		
+#define PID_L_KD       	0.5f                 		
 
 #define PID_R_KP       	0.275f               			
 #define PID_R_KI       	0.025f               		
-#define PID_R_KD       	0.15f                 		
+#define PID_R_KD       	0.5f                 		
 
 //#define Left_SP	     		-3.5f
 //#define Right_SP   			-3.5f
@@ -87,12 +87,13 @@ int main(void){
 	arm_pid_init_f32(&Left_PID,1);
 	arm_pid_init_f32(&Right_PID,1);
 	
+	//Left_SP = 3.5f;
+	//Right_SP = 3.5f;
+	
 	while(1){
 		if(data_ready){
 			omega_a = atoi(num1);
 			omega_b = atoi(num2);
-			//Left_SP = omega_a/(1000.0f);							// without PID
-			//Right_SP = omega_b/(1000.0f);						// without PID
 			Left_SP = omega_a/(100.0f);
 			Right_SP = omega_b/(100.0f);
 			if (omega_a > 123) LED_On(0);
