@@ -134,8 +134,15 @@ void UART0_RX_TX_IRQHandler(void){
 		case 0:{
 			data_ready = 0;
 			if(data != ','){
-				num1[i] = data;
-				i++;
+				if((data>='0')&&(data<='9')){
+					num1[i] = data;
+					i++;
+				} else {
+					if(data=='-'){
+						num1[i] = data;
+						i++;
+					}
+				}
 			} else{
 				num1[i] = '\0';
 				num = 1;
