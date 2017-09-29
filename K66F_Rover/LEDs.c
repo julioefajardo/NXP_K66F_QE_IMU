@@ -15,6 +15,7 @@
 GPIO_Type *leds_addr[]    = { PTC, PTE, PTA };
 const uint32_t leds_mask[] = { 1<<9, 1<<6,  1<<11 };
 	
+// RGB LED Initialization
 void LEDs_Init(void){
 	SIM->SCGC5 |= SIM_SCGC5_PORTA_MASK + SIM_SCGC5_PORTC_MASK + SIM_SCGC5_PORTE_MASK;
 	PORTA->PCR[11] |= PORT_PCR_MUX(0x01);
@@ -28,14 +29,17 @@ void LEDs_Init(void){
 	PTE->PSOR |= (1<<6);
 }
 
+// Turn ON LED, receives as argument the led number (0 is R, 1 is G and 2 is B)
 void LED_On(uint8_t led){
 	leds_addr[led]->PCOR |= leds_mask[led];
 }
 
+// Turn OFF LED, receives as argument the led number (0 is R, 1 is G and 2 is B)
 void LED_Off(uint8_t led){
 	leds_addr[led]->PSOR |= leds_mask[led];
 }
 
+// LED Toogle, receives as argument the led number (0 is R, 1 is G and 2 is B)
 void LED_Toggle(uint8_t led){
 	leds_addr[led]->PTOR |= leds_mask[led];
 }

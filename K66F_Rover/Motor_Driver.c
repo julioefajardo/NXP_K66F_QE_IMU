@@ -25,6 +25,7 @@ const uint32_t dir_mask[] = { 1<<12, 1<<12,  1<<2, 1<<2 };
 //PTD0  MOTOR 2 FTM3_CH0
 //PTD2  MOTOR 2 DIR
 
+// PWM Initialization (Freq = 1 kHz), receives as argument the number of motor (1 is LEFT, 2 is RIGHT)
 void Motor_Init(uint8_t motor){
 	switch(motor){
 		case 1:{
@@ -49,6 +50,7 @@ void Motor_Init(uint8_t motor){
 	MOTOR_addr[motor]->SC = FTM_SC_CLKS(0x01) + FTM_SC_PS(0x00);																									// SystemClock/4
 }
 
+// Set PWM to Motor Driver, receives as argument the duty cycle (between -1.0f and 1.0f) and the number of motor (1 is LEFT, 2 is RIGHT) 
 void Motor_Set(float32_t * duty_cycle, uint8_t motor){
 	uint16_t value;
 	if((*duty_cycle)<0) {
@@ -62,6 +64,7 @@ void Motor_Set(float32_t * duty_cycle, uint8_t motor){
 	MOTOR_addr[motor]->CONTROLS[channel[motor]].CnV  = FTM_CnV_VAL(value);
 }
 
+// Keep the PID Output between -1.0f and 1.0f.
 float32_t Power_Verification(float32_t * pid){
 	if(*pid>=0.0f){
 		if(*pid>1.0f) return 1.0f;

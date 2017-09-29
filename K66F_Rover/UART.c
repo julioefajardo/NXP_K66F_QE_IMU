@@ -12,6 +12,7 @@
 #include "MK66F18.h"                    // Device header
 #include "UART.h"
  
+// UART0 Initialization  
 void UART_Init(uint32_t baudrate){
 	SIM->SCGC5 |= SIM_SCGC5_PORTB_MASK;
 	SIM->SCGC4 |= SIM_SCGC4_UART0_MASK; 
@@ -25,12 +26,14 @@ void UART_Init(uint32_t baudrate){
 	UART0->C2 = (UART_C2_RIE_MASK | UART_C2_TE_MASK | UART_C2_RE_MASK);
 	NVIC_EnableIRQ(UART0_RX_TX_IRQn);
 }
-	
+
+// Send Character through UART0
 void UART_Send(char dato){
 	while (!((UART0->S1)&(UART_S1_TDRE_MASK)));  
 	UART0->D = dato;
 }
 
+// Send Strings through UART0
 void UART_PutString(char *mystring){
 	while(*mystring){
 		UART_Send(*mystring);

@@ -14,6 +14,7 @@
 #include "LEDs.h"
 #include "QE_Driver.h"
 
+// Periodic Time Interrupt Initialization, receives frequency as argument.
 void PIT_Init(uint32_t frequency){
 	SIM->SCGC6 |= SIM_SCGC6_PIT_MASK;
 	PIT->MCR &= ~(PIT_MCR_MDIS_MASK + PIT_MCR_FRZ_MASK);
