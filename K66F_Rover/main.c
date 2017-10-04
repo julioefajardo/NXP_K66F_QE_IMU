@@ -97,17 +97,17 @@ int main(void){
   arm_pid_init_f32(&Right_PID,1);
 	
   while(1){
-	  if(data_ready){
-		  omega_a = atoi(num1);
-		  omega_b = atoi(num2);
-		  Left_SP = omega_a/(100.0f);
-		  Right_SP = omega_b/(100.0f);
-		  if (omega_a > 123) LED_On(0);
-		  else LED_Off(0);
-		  if (omega_b > 123) LED_On(2);
-		  else LED_Off(2);
-		  data_ready = 0;
-	  } 
+    if(data_ready){
+  	  omega_a = atoi(num1);
+  	  omega_b = atoi(num2);
+  	  Left_SP = omega_a/(100.0f);
+  	  Right_SP = omega_b/(100.0f);
+  	  if (omega_a > 123) LED_On(0);
+  	  else LED_Off(0);
+  	  if (omega_b > 123) LED_On(2);
+  	  else LED_Off(2);
+  	  data_ready = 0;
+    } 
   }
 }
 
