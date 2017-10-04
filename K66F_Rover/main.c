@@ -158,7 +158,7 @@ void UART0_RX_TX_IRQHandler(void){
         num = 1;
         i = 0;
       }
-	  } break;
+    } break;
     case 1:{
       data_ready = 0;
       if(data != '*'){
