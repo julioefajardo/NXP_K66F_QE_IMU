@@ -150,8 +150,8 @@ void UART0_RX_TX_IRQHandler(void){
         } else {
           if(data=='-'){
             num1[i] = data;
-					  i++;
-				  }
+            i++;
+          }
         }
       } else{
         num1[i] = '\0';
