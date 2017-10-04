@@ -141,38 +141,38 @@ void UART0_RX_TX_IRQHandler(void){
   (void)UART0->S1;
   data = UART0->D;
   switch(num){
-	  case 0:{
-		  data_ready = 0;
-		  if(data != ','){
-			  if((data>='0')&&(data<='9')){
-				  num1[i] = data;
-				  i++;
-			  } else {
-				  if(data=='-'){
-					  num1[i] = data;
+    case 0:{
+      data_ready = 0;
+      if(data != ','){
+    	  if((data>='0')&&(data<='9')){
+          num1[i] = data;
+          i++;
+        } else {
+          if(data=='-'){
+            num1[i] = data;
 					  i++;
 				  }
-			  }
-		  } else{
-			  num1[i] = '\0';
-			  num = 1;
-			  i = 0;
-		  }
+        }
+      } else{
+        num1[i] = '\0';
+        num = 1;
+        i = 0;
+      }
 	  } break;
-	  case 1:{
-		  data_ready = 0;
-		  if(data != '*'){
-			  num2[i] = data;
-			  i++;
-		  } else{
-			  num2[i] = '\0';
-			  num = 2;
-			  i = 0;
-		  }
-	  } break;
-	  case 2:{
-		  data_ready = 1;
-		  num = 0;
-	  } break;
+    case 1:{
+      data_ready = 0;
+      if(data != '*'){
+        num2[i] = data;
+        i++;
+      } else{
+        num2[i] = '\0';
+        num = 2;
+        i = 0;
+      }
+    } break;
+    case 2:{
+      data_ready = 1;
+      num = 0;
+    } break;
   }
 }
