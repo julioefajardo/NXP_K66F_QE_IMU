@@ -20,12 +20,12 @@ ADCC trigger enabled and sources on SIM->SOPT7
 
 // PID Constants
 #define PID_L_KP       	0.275f     		          	
-#define PID_L_KI       	0.05f    	//0.025f  	         	
-#define PID_L_KD       	0.125f    //0.5f             		
+#define PID_L_KI       	0.05f          //0.025f  	         	
+#define PID_L_KD       	0.125f         //0.5f             		
 
 #define PID_R_KP       	0.275f               			
-#define PID_R_KI       	0.05f    	//0.025         		
-#define PID_R_KD       	0.125f    //0.5f             		
+#define PID_R_KI       	0.05f          //0.025         		
+#define PID_R_KD       	0.125f         //0.5f             		
 
 // Fixed Set Point
 //#define Left_SP	     		-3.5f
@@ -101,10 +101,10 @@ int main(void){
 	
   while(1){
     if(data_ready){
-		  tokens[0] = strtok(rx_string,"*");
-		  tokens[1] = strtok(NULL,"*");
-		  tokens[2] = strtok(NULL,"*");
-		  if(!strcmp(tokens[0],"RB")){
+      tokens[0] = strtok(rx_string,"*");
+      tokens[1] = strtok(NULL,"*");
+      tokens[2] = strtok(NULL,"*");
+      if(!strcmp(tokens[0],"RB")){
         omega_a = (int16_t)strtol(tokens[1], NULL, 10);
         omega_b = (int16_t)strtol(tokens[2], NULL, 10);
         Left_SP = omega_a/(100.0f);
@@ -116,7 +116,7 @@ int main(void){
         data_ready = 0;
         sprintf(string,"%.2f,%.2f,%lld,%.2f,%.2f,%lld\r",Left_SP,QD_L.omega,QD_L.steps,Right_SP,QD_R.omega,QD_R.steps);
         UART_PutString(string);
-			}
+      }
     } 
   }
 }
@@ -146,18 +146,18 @@ void PIT0_IRQHandler(void){
 }
 
 void UART0_RX_TX_IRQHandler(void){
-	volatile uint8_t data ;
-	if(UART0->S1 & UART_S1_RDRF_MASK){
-		(void)UART0->S1;
-		data = UART0->D;
-		if(data != '\r'){ 
-			rx_string[n] = UART0->D;
-			n++;	
-			data_ready = 0;
-		} else {
-			rx_string[n] = '\0';
-			n = 0;
-			data_ready = 1;
-		}
-	}
+  volatile uint8_t data ;
+  if(UART0->S1 & UART_S1_RDRF_MASK){
+    (void)UART0->S1;
+    data = UART0->D;
+    if(data != '\r'){ 
+      rx_string[n] = UART0->D;
+      n++;	
+      data_ready = 0;
+    } else {
+      rx_string[n] = '\0';
+      n = 0;
+      data_ready = 1;
+    }
+  }
 }
