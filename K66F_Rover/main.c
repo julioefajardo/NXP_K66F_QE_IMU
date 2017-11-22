@@ -101,21 +101,21 @@ int main(void){
 	
   while(1){
     if(data_ready){
-			tokens[0] = strtok(rx_string,"*");
-			tokens[1] = strtok(NULL,"*");
-			tokens[2] = strtok(NULL,"*");
-			if(!strcmp(tokens[0],"RB")){
-				omega_a = (int16_t)strtol(tokens[1], NULL, 10);
-				omega_b = (int16_t)strtol(tokens[2], NULL, 10);
-				Left_SP = omega_a/(100.0f);
-				Right_SP = omega_b/(100.0f);
-				if (omega_a > 123) LED_On(0);
-				else LED_Off(0);
-				if (omega_b > 123) LED_On(2);
-				else LED_Off(2);
-				data_ready = 0;
-				sprintf(string,"%.2f,%.2f,%.2f,%.2f\r",Left_SP,QD_L.omega,Right_SP,QD_R.omega);
-				UART_PutString(string);
+		  tokens[0] = strtok(rx_string,"*");
+		  tokens[1] = strtok(NULL,"*");
+		  tokens[2] = strtok(NULL,"*");
+		  if(!strcmp(tokens[0],"RB")){
+        omega_a = (int16_t)strtol(tokens[1], NULL, 10);
+        omega_b = (int16_t)strtol(tokens[2], NULL, 10);
+        Left_SP = omega_a/(100.0f);
+        Right_SP = omega_b/(100.0f);
+        if (omega_a > 123) LED_On(0);
+        else LED_Off(0);
+        if (omega_b > 123) LED_On(2);
+        else LED_Off(2);
+        data_ready = 0;
+        sprintf(string,"%.2f,%.2f,%lld,%.2f,%.2f,%lld\r",Left_SP,QD_L.omega,QD_L.steps,Right_SP,QD_R.omega,QD_R.steps);
+        UART_PutString(string);
 			}
     } 
   }
