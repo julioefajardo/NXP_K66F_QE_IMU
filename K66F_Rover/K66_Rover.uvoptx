@@ -236,6 +236,16 @@
           <WinNumber>2</WinNumber>
           <ItemText>Right_SP</ItemText>
         </Ww>
+        <Ww>
+          <count>4</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>\\K66_Rover\main.c\QD_L.omega</ItemText>
+        </Ww>
+        <Ww>
+          <count>5</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>\\K66_Rover\main.c\QD_R.omega</ItemText>
+        </Ww>
       </WatchWindow2>
       <Tracepoint>
         <THDelay>0</THDelay>

@@ -27,5 +27,6 @@ typedef struct Quadrature{
 
 void QD_Init(QuadratureDecoder * QD, uint8_t n);
 void QD_Process(QuadratureDecoder * QD, uint8_t timer);
+void QD_Reset(QuadratureDecoder * QD);
 
 #endif /* QE_DRIVER_H_ */

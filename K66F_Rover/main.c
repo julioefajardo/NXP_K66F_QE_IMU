@@ -20,12 +20,12 @@ ADCC trigger enabled and sources on SIM->SOPT7
 
 // PID Constants
 #define PID_L_KP       	0.275f     		          	
-#define PID_L_KI       	0.05f          //0.025f  	         	
-#define PID_L_KD       	0.125f         //0.5f             		
+#define PID_L_KI       	0.125f          //0.025f  	         	
+#define PID_L_KD       	0.2f            //0.5f             		
 
 #define PID_R_KP       	0.275f               			
-#define PID_R_KI       	0.05f          //0.025         		
-#define PID_R_KD       	0.125f         //0.5f             		
+#define PID_R_KI       	0.125f          //0.025         		
+#define PID_R_KD       	0.2f           //0.5f             		
 
 // Fixed Set Point
 //#define Left_SP	     		-3.5f
@@ -114,8 +114,13 @@ int main(void){
         if (omega_b > 123) LED_On(2);
         else LED_Off(2);
         data_ready = 0;
-        sprintf(string,"%.2f,%.2f,%lld,%.2f,%.2f,%lld\r",Left_SP,QD_L.omega,QD_L.steps,Right_SP,QD_R.omega,QD_R.steps);
+        sprintf(string,"%.2f, %.2f, %lld, %.2f, %.2f, %lld\r",Left_SP,QD_L.omega,QD_L.steps,Right_SP,QD_R.omega,QD_R.steps);
         UART_PutString(string);
+      } else {
+        if((!strcmp(tokens[0],"RESET_ENCODER"))){
+          //QD_Reset(&QD_L);
+					//QD_Reset(&QD_R);
+        }
       }
     } 
   }
@@ -125,7 +130,7 @@ int main(void){
 // Debugging through UART 
 void SysTick_Handler(void){
   LED_Toggle(1);
-  //sprintf(string,"%.2f,\t%.2f,\t%.2f,\t%.2f\r",Left_SP,QD_L.omega,Right_SP,QD_R.omega);
+  //sprintf(string,"%.2f, %.2f, %lld, %.2f, %.2f, %lld\r",Left_SP,QD_L.omega,QD_L.steps,Right_SP,QD_R.omega,QD_R.steps);
   //UART_PutString(string);
 }
 
