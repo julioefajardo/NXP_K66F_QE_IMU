@@ -19,13 +19,15 @@ ADCC trigger enabled and sources on SIM->SOPT7
 */
 
 // PID Constants
-#define PID_L_KP       	0.275f     		          	
-#define PID_L_KI       	0.125f          //0.025f  	         	
-#define PID_L_KD       	0.2f            //0.5f             		
+#define PID_L_KP       	0.550f  	
+#define PID_L_KI       	0.000f //0.005f //340.26f
+#define PID_L_KD       	0.000f //0.000075f        
 
-#define PID_R_KP       	0.275f               			
-#define PID_R_KI       	0.125f          //0.025         		
-#define PID_R_KD       	0.2f           //0.5f             		
+#define PID_R_KP       	0.550f 
+#define PID_R_KI       	0.000f //0.005f 
+#define PID_R_KD       	0.000f //0.000075f        
+
+#define Ts							0.01f
 
 // Fixed Set Point
 //#define Left_SP	     		-3.5f
@@ -96,8 +98,8 @@ int main(void){
   QD_Process(&QD_R,2);
 	
   // PID Initialization
-  arm_pid_init_f32(&Left_PID,1);
-  arm_pid_init_f32(&Right_PID,1);
+  arm_pid_init_f32(&Left_PID,0);
+  arm_pid_init_f32(&Right_PID,0);
 	
   while(1){
     if(data_ready){
@@ -114,8 +116,8 @@ int main(void){
         if (omega_b > 123) LED_On(2);
         else LED_Off(2);
         data_ready = 0;
-        sprintf(string,"%.2f, %.2f, %lld, %.2f, %.2f, %lld\r",Left_SP,QD_L.omega,QD_L.steps,Right_SP,QD_R.omega,QD_R.steps);
-        UART_PutString(string);
+        //sprintf(string,"%.2f, %.2f, %lld, %.2f, %.2f, %lld\r",Left_SP,QD_L.omega,QD_L.steps,Right_SP,QD_R.omega,QD_R.steps);
+        //UART_PutString(string);
       } else {
         if((!strcmp(tokens[0],"RESET_ENCODER"))){
           //QD_Reset(&QD_L);
@@ -125,6 +127,7 @@ int main(void){
     } 
   }
 }
+
 
 
 // Debugging through UART 
@@ -142,9 +145,13 @@ void PIT0_IRQHandler(void){
   QD_Process(&QD_R,2);
   Left_error = Left_SP - QD_L.omega;																														// Error
   Right_error = Right_SP - QD_R.omega;
-  L_Motor = ((Left_SP>=-0.01f)&&(Left_SP<=0.01f))?0.0f:arm_pid_f32(&Left_PID, Left_error);			// PID Output
-  R_Motor = ((Right_SP>=-0.01f)&&(Right_SP<=0.01f))?0.0f:arm_pid_f32(&Right_PID, Right_error);
-  L_Motor = Power_Verification(&L_Motor);																												// Power Verification (Between -1.0f and 1.0f)
+  L_Motor = ((Left_SP>=-0.02f)&&(Left_SP<=0.02f))?0.0f:arm_pid_f32(&Left_PID, Left_error);			// PID Output
+  R_Motor = ((Right_SP>=-0.02f)&&(Right_SP<=0.02f))?0.0f:arm_pid_f32(&Right_PID, Right_error);
+	//L_Motor = 0.5f;
+	//R_Motor = 0.5f;
+	//L_Motor = Left_SP;
+	//R_Motor = Right_SP;
+	L_Motor = Power_Verification(&L_Motor);																												// Power Verification (Between -1.0f and 1.0f)
   R_Motor = Power_Verification(&R_Motor);
   Motor_Set(&L_Motor,1);																																				// Set PWM to Motor Driver
   Motor_Set(&R_Motor,2);

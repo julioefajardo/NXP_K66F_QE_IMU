@@ -78,43 +78,6 @@
         <IsCurrentTarget>1</IsCurrentTarget>
       </OPTFL>
       <CpuCode>8</CpuCode>
-      <Books>
-        <Book>
-          <Number>0</Number>
-          <Title>KoalaEVM Quick Start (Koala EVM)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Clarinox\Wireless\2.0.1\Docs\KoalaEVM_QuickStart.pdf</Path>
-        </Book>
-        <Book>
-          <Number>1</Number>
-          <Title>KoalaEVM Applications Manual (Koala EVM)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Clarinox\Wireless\2.0.1\Docs\KoalaEVM_SoftwareApplications.pdf</Path>
-        </Book>
-        <Book>
-          <Number>2</Number>
-          <Title>Quick Start Guide (TWR-K60D100M)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.5.0\Boards\NXP\TWR-K60D100M\Documents\TWR-K60D100MQSG.pdf</Path>
-        </Book>
-        <Book>
-          <Number>3</Number>
-          <Title>Schematic (TWR-K60D100M)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.5.0\Boards\NXP\TWR-K60D100M\Documents\TWR-K60D100M_SCH.pdf</Path>
-        </Book>
-        <Book>
-          <Number>4</Number>
-          <Title>User Manual (TWR-K60D100M)</Title>
-          <Path>C:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.5.0\Boards\NXP\TWR-K60D100M\Documents\TWRK60D100MUM.pdf</Path>
-        </Book>
-        <Book>
-          <Number>5</Number>
-          <Title>KoalaEVM Web Page (Koala EVM)</Title>
-          <Path>http://www.clarinox.com/index.php?id=415</Path>
-        </Book>
-        <Book>
-          <Number>6</Number>
-          <Title>TWR-K60D100M Web Page (TWR-K60D100M)</Title>
-          <Path>http://www.nxp.com/products/microcontrollers-and-processors/arm-processors/kinetis-cortex-m-mcus/k-series-performance-m4/k6x-ethernet/kinetis-k60-100-mhz-mcu-tower-system-module:TWR-K60D100M</Path>
-        </Book>
-      </Books>
       <DebugOpt>
         <uSim>0</uSim>
         <uTrg>1</uTrg>
@@ -137,7 +100,10 @@
         <tRSysVw>1</tRSysVw>
         <sRunDeb>0</sRunDeb>
         <sLrtime>0</sLrtime>
-        <nTsel>12</nTsel>
+        <bEvRecOn>1</bEvRecOn>
+        <bSchkAxf>0</bSchkAxf>
+        <bTchkAxf>0</bTchkAxf>
+        <nTsel>4</nTsel>
         <sDll></sDll>
         <sDllPa></sDllPa>
         <sDlgDll></sDlgDll>
@@ -148,9 +114,14 @@
         <tDlgDll></tDlgDll>
         <tDlgPa></tDlgPa>
         <tIfile></tIfile>
-        <pMon>BIN\CMSIS_AGDI.dll</pMon>
+        <pMon>Segger\JL2CM3.dll</pMon>
       </DebugOpt>
       <TargetDriverDllRegistry>
+        <SetRegEntry>
+          <Number>0</Number>
+          <Key>JL2CM3</Key>
+          <Name>-U621000000 -O78 -S2 -ZTIFSpeedSel5000 -A0 -C0 -JU1 -JI127.0.0.1 -JP0 -RST0 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP21 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -TB1 -TFE0 -FO15 -FD20000000 -FC1000 -FN1 -FF0MK_P2M0.FLM -FS00 -FL0200000 -FP0($$Device:MK66FN2M0xxx18$Flash\MK_P2M0.FLM)</Name>
+        </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
           <Key>DLGDARM</Key>
@@ -173,13 +144,8 @@
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
-          <Key>DLGUARM</Key>
-          <Name></Name>
-        </SetRegEntry>
-        <SetRegEntry>
-          <Number>0</Number>
           <Key>CMSIS_AGDI</Key>
-          <Name>-X"Any" -UAny -O206 -S0 -C0 -P00 -N00("ARM CoreSight SW-DP") -D00(2BA01477) -L00(0) -TO18 -TC10000000 -TP20 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC1000 -FN1 -FF0MK_P2M0.FLM -FS00 -FL0200000 -FP0($$Device:MK66FN2M0xxx18$Flash\MK_P2M0.FLM)</Name>
+          <Name>-X"CMSIS-DAP" -U0311000033514e45001c5015846c000d -O206 -S0 -C0 -P00 -TO18 -TC10000000 -TP20 -TDS8007 -TDT0 -TDC1F -TIEFFFFFFFF -TIP8 -FO7 -FD20000000 -FC1000 -FN1 -FF0MK_P2M0.FLM -FS00 -FL0200000 -FP0($$Device:MK66FN2M0xxx18$Flash\MK_P2M0.FLM)</Name>
         </SetRegEntry>
         <SetRegEntry>
           <Number>0</Number>
@@ -239,12 +205,22 @@
         <Ww>
           <count>4</count>
           <WinNumber>2</WinNumber>
-          <ItemText>\\K66_Rover\main.c\QD_L.omega</ItemText>
+          <ItemText>L_Motor</ItemText>
         </Ww>
         <Ww>
           <count>5</count>
           <WinNumber>2</WinNumber>
-          <ItemText>\\K66_Rover\main.c\QD_R.omega</ItemText>
+          <ItemText>R_Motor</ItemText>
+        </Ww>
+        <Ww>
+          <count>6</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>Left_error</ItemText>
+        </Ww>
+        <Ww>
+          <count>7</count>
+          <WinNumber>2</WinNumber>
+          <ItemText>Right_error</ItemText>
         </Ww>
       </WatchWindow2>
       <Tracepoint>
@@ -279,9 +255,16 @@
       <LintExecutable></LintExecutable>
       <LintConfigFile></LintConfigFile>
       <bLintAuto>0</bLintAuto>
-      <Lin2Executable></Lin2Executable>
-      <Lin2ConfigFile></Lin2ConfigFile>
-      <bLin2Auto>0</bLin2Auto>
+      <bAutoGenD>0</bAutoGenD>
+      <LntExFlags>0</LntExFlags>
+      <pMisraName></pMisraName>
+      <pszMrule></pszMrule>
+      <pSingCmds></pSingCmds>
+      <pMultCmds></pMultCmds>
+      <pMisraNamep></pMisraNamep>
+      <pszMrulep></pszMrulep>
+      <pSingCmdsp></pSingCmdsp>
+      <pMultCmdsp></pMultCmdsp>
     </TargetOption>
   </Target>
 
@@ -315,7 +298,7 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>2</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\QE_Driver.c</PathWithFileName>
@@ -327,7 +310,7 @@
       <GroupNumber>2</GroupNumber>
       <FileNumber>3</FileNumber>
       <FileType>1</FileType>
-      <tvExp>0</tvExp>
+      <tvExp>1</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
       <PathWithFileName>.\LEDs.c</PathWithFileName>

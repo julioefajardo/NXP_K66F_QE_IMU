@@ -54,7 +54,7 @@ void QD_Process(QuadratureDecoder * QD, uint8_t encoder){
 		delta = QD->ticks2 - QD->ticks1;
 	}
 	QD->steps += delta;
-	QD->omega = ((delta*PI)/2700.0f)/((float32_t)(1.0f/PIT_FREQUENCY));												
+	QD->omega = (((float32_t)(PIT_FREQUENCY))*(delta*PI)/2700.0f);												
 	QD->ticks1 = QD->ticks2;
 }
 
