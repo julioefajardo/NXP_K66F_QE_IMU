@@ -1202,12 +1202,13 @@ ARM Macro Assembler    Page 19
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M4.fp --apcs=int
 erwork --depend=.\objects\startup_mk66f18.d -o.\objects\startup_mk66f18.o -I.\R
-TE\Device\MK66FN2M0xxx18 -I.\RTE\_FRDM-K66F -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4
-.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.4.0\CMSIS\DSP\Include -
-IC:\Keil_v5\ARM\PACK\Keil\Kinetis_K60_DFP\1.5.0\Device\Include --predefine="__E
-VAL SETA 1" --predefine="__UVISION_VERSION SETA 526" --predefine="_RTE_ SETA 1"
- --predefine="MK66FN2M0xxx18 SETA 1" --list=.\listings\startup_mk66f18.lst RTE\
-Device\MK66FN2M0xxx18\startup_MK66F18.s
+TE\Device\MK66FN2M0xxx18 -I.\RTE\_FRDM-K66F -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7
+.0\CMSIS\Core\Include -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\DSP\Include -
+IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.7.0\CMSIS\DSP\PrivateInclude -IC:\Keil_v5\ARM\
+PACK\Keil\Kinetis_K60_DFP\1.5.0\Device\Include --predefine="__EVAL SETA 1" --pr
+edefine="__UVISION_VERSION SETA 526" --predefine="_RTE_ SETA 1" --predefine="MK
+66FN2M0xxx18 SETA 1" --list=.\listings\startup_mk66f18.lst RTE\Device\MK66FN2M0
+xxx18\startup_MK66F18.s
 
 
 
